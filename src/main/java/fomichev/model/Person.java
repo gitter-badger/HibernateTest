@@ -1,5 +1,8 @@
 package fomichev.model;
 
+import org.hibernate.annotations.Cascade;
+import org.hibernate.annotations.GenericGenerator;
+
 import javax.persistence.*;
 import java.sql.Date;
 
@@ -12,6 +15,11 @@ public class Person {
     private Long id;
 
     private String name;
+
+    @OneToOne(mappedBy = "person")
+    @JoinColumn
+    private Notebook notebook;
+
     @Column()
     private Date dateOfBirth;
 
@@ -37,5 +45,13 @@ public class Person {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public Notebook getNotebook() {
+        return notebook;
+    }
+
+    public void setNotebook(Notebook notebook) {
+        this.notebook = notebook;
     }
 }
