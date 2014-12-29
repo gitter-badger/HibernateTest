@@ -13,7 +13,8 @@ public class Notebook {
 
     private Long perfomance;
 
-    @OneToOne//(mappedBy = "notebook")
+    @ManyToOne
+    @JoinColumn
     private Person person;
 
 

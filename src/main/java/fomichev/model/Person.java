@@ -5,6 +5,7 @@ import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
 import java.sql.Date;
+import java.util.Set;
 
 @Entity
 @Table( name = "PERSONS" )
@@ -13,15 +14,11 @@ public class Person {
     @Id
     @GeneratedValue(strategy= GenerationType.SEQUENCE)
     private Long id;
-
     private String name;
-
-    @OneToOne(mappedBy = "person")
-    @JoinColumn
-    private Notebook notebook;
-
-    @Column()
     private Date dateOfBirth;
+
+    @OneToMany(mappedBy="person")
+    private Set<Notebook> notebooks;
 
     public String getName() {
         return name;
@@ -47,11 +44,11 @@ public class Person {
         this.id = id;
     }
 
-    public Notebook getNotebook() {
-        return notebook;
+    public Set<Notebook> getNotebooks() {
+        return notebooks;
     }
 
-    public void setNotebook(Notebook notebook) {
-        this.notebook = notebook;
+    public void setNotebooks(Set<Notebook> notebooks) {
+        this.notebooks = notebooks;
     }
 }
