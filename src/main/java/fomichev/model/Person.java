@@ -1,27 +1,25 @@
 package fomichev.model;
 
-import org.hibernate.annotations.Cascade;
-import org.hibernate.annotations.GenericGenerator;
-
 import javax.persistence.*;
-import java.sql.Date;
 
-@Entity
-@Table( name = "PERSONS" )
-public class Person {
+@MappedSuperclass
+@Table
+@Access(AccessType.PROPERTY)
+public abstract class Person {
 
-    @Id
-    @GeneratedValue(strategy= GenerationType.SEQUENCE)
     private Long id;
 
     private String name;
 
-    @OneToOne(mappedBy = "person")
-    @JoinColumn
-    private Notebook notebook;
+    @Id
+    @GeneratedValue(strategy= GenerationType.SEQUENCE)
+    public Long getId() {
+        return id;
+    }
 
-    @Column()
-    private Date dateOfBirth;
+    public void setId(Long id) {
+        this.id = id;
+    }
 
     public String getName() {
         return name;
@@ -31,27 +29,11 @@ public class Person {
         this.name = name;
     }
 
-    public Date getDateOfBirth() {
-        return dateOfBirth;
-    }
-
-    public void setDateOfBirth(Date dateOfBirth) {
-        this.dateOfBirth = dateOfBirth;
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public Notebook getNotebook() {
-        return notebook;
-    }
-
-    public void setNotebook(Notebook notebook) {
-        this.notebook = notebook;
+    @Override
+    public String toString() {
+        return "Person{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                '}';
     }
 }

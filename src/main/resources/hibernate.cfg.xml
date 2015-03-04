@@ -22,10 +22,10 @@
 
         <!-- Drop and re-create the database schema on startup -->
         <!--<property name="hbm2ddl.auto">update</property>-->
-        <property name="hbm2ddl.auto">create</property>
+        <property name="hbm2ddl.auto">update</property>
 
         <!-- Mapping with model class containing annotations -->
         <mapping class="fomichev.model.Person"/>
-        <mapping class="fomichev.model.Notebook"/>
+        <mapping class="fomichev.model.Employee"/>
     </session-factory>
 </hibernate-configuration>
